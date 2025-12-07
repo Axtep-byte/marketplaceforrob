@@ -1,0 +1,226 @@
+/* ===== Global ===== */
+body {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    background: #fff;
+    color: #000;
+    transition: background 0.3s, color 0.3s;
+}
+
+body.dark {
+    background: #121212;
+    color: #fff;
+}
+
+/* ===== Theme Switcher ===== */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    border: 2px solid currentColor;
+    background: transparent;
+    padding: 8px 14px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.theme-toggle:hover {
+    background: currentColor;
+    color: #fff;
+}
+
+/* ===== Nav ===== */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 40px;
+    border-bottom: 2px solid currentColor;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+nav a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: currentColor;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+nav a:hover {
+    opacity: 0.6;
+}
+
+/* ===== Hero ===== */
+.hero {
+    text-align: center;
+    padding: 140px 20px;
+}
+
+.hero h1 {
+    font-size: 52px;
+    font-weight: 900;
+}
+
+.hero p {
+    margin-top: 10px;
+    font-size: 20px;
+    opacity: 0.7;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 14px 30px;
+    border: 2px solid currentColor;
+    text-decoration: none;
+    color: currentColor;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.btn:hover {
+    background: currentColor;
+    color: #fff;
+}
+
+/* ===== Catalog Grid ===== */
+.page-title {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 32px;
+    font-weight: 800;
+}
+
+.grid {
+    max-width: 1100px;
+    margin: 40px auto;
+    display: grid;
+    gap: 40px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.card {
+    border: 2px solid currentColor;
+    padding: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.5s forwards;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.card img {
+    width: 100%;
+    border-bottom: 2px solid currentColor;
+    margin-bottom: 14px;
+    border-radius: 8px;
+}
+
+/* Fade up animation */
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== Product Page ===== */
+.product-page {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 40px;
+    border: 2px solid currentColor;
+    border-radius: 12px;
+    transition: border-color 0.3s;
+}
+
+.product-page img {
+    width: 100%;
+    border-bottom: 2px solid currentColor;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.product-page button {
+    padding: 14px 30px;
+    border: 2px solid currentColor;
+    background: transparent;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.product-page button:hover {
+    background: currentColor;
+    color: #fff;
+}
+
+/* ===== Cart ===== */
+.cart {
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+.cart-item {
+    display: flex;
+    border-bottom: 2px solid currentColor;
+    padding: 20px 0;
+    transition: transform 0.3s;
+}
+
+.cart-item:hover {
+    transform: translateX(5px);
+}
+
+.cart-item img {
+    width: 140px;
+    margin-right: 20px;
+    border: 2px solid currentColor;
+    border-radius: 8px;
+}
+
+.counter button,
+.delete-btn {
+    border: 2px solid currentColor;
+    background: transparent;
+    padding: 6px 12px;
+    cursor: pointer;
+    margin-right: 8px;
+    transition: 0.3s;
+}
+
+.counter button:hover,
+.delete-btn:hover {
+    background: currentColor;
+    color: #fff;
+}
+
+.total {
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.clear-btn {
+    margin-top: 20px;
+    padding: 14px 30px;
+    border: 2px solid currentColor;
+    cursor: pointer;
+    background: transparent;
+}
+
+.clear-btn:hover {
+    background: currentColor;
+    color: #fff;
+}

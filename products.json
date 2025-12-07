@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Samsung Galaxy A54",
+    "price": 19990,
+    "img": "img/phone.jpg",
+    "description": "Стильный смартфон с отличной камерой и высокой производительностью."
+  },
+  {
+    "id": 2,
+    "name": "Lenovo IdeaPad 5",
+    "price": 54990,
+    "img": "img/laptop.jpg",
+    "description": "Тонкий и мощный ноутбук c Ryzen 5 и 16GB RAM."
+  },
+  {
+    "id": 3,
+    "name": "Predator Gaming PC",
+    "price": 89990,
+    "img": "img/pc.jpg",
+    "description": "Игровой ПК с RTX 3060 и процессором Intel Core i5."
+  }
+]
