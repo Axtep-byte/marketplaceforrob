@@ -7,21 +7,33 @@
 </head>
 <body>
 
+<button class="theme-toggle" onclick="toggleTheme()">🌙 / ☀️</button>
+
 <header class="nav">
-    <div class="logo">MARKET</div>
+    <div class="logo">
+        <img src="profile-icon.png" alt="Профиль" id="profile-icon" style="width:30px; cursor:pointer;">
+        MARKET
+    </div>
     <nav>
         <a href="index.html">Главная</a>
         <a href="catalog.html">Каталог</a>
-        <a href="cart.html">Корзина</a>
+        <a href="cart.html" class="active">Корзина</a>
     </nav>
 </header>
 
-<h2 class="page-title">Корзина</h2>
+<h1 class="page-title">Корзина</h1>
 
-<section id="cart" class="cart"></section>
+<div id="cart" class="cart"></div>
+
+<div class="checkout-container">
+    <a href="checkout.html" class="btn checkout-btn">Оформить заказ</a>
+</div>
 
 <script src="script.js"></script>
-<script>loadCart();</script>
+<script>
+applyTheme();
+loadCart();
+</script>
 
 </body>
 </html>

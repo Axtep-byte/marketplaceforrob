@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Профиль</title>
+    <style>
+        body { font-family:"Inter",Arial,sans-serif; background:#f7f7f7; color:#222; padding:20px; }
+        body.dark { background:#121212; color:#eaeaea; }
+        .profile-card { max-width:400px; margin:40px auto; padding:20px; border-radius:16px; background:#fff; box-shadow:0 10px 30px rgba(0,0,0,0.1); }
+        body.dark .profile-card { background:#222; }
+        .profile-card h2 { text-align:center; margin-bottom:20px; }
+        .profile-card img { width:120px; height:120px; border-radius:50%; display:block; margin:0 auto 15px; }
+        .profile-card p { text-align:center; margin:5px 0; font-weight:600; }
+        .profile-card button { display:block; margin:15px auto 0; padding:10px 20px; border-radius:12px; border:2px solid currentColor; background:transparent; cursor:pointer; font-weight:bold; }
+        .profile-card button:hover { background:currentColor; color:#fff; }
+        .profile-card input { width:100%; padding:10px; margin:5px 0; border-radius:8px; border:1px solid #aaa; }
+    </style>
+</head>
+<body onload="showProfile()">
+
+<div class="profile-card" id="profile-section">
+    <img id="profile-avatar" src="https://i.pravatar.cc/120" alt="Аватар">
+    <h2 id="profile-name"></h2>
+    <p>Баланс: <span id="profile-balance"></span> грн</p>
+    <button onclick="addBalance()">Пополнить баланс</button>
+    <button onclick="logoutUser()">Выйти</button>
+</div>
+
+<div class="profile-card" id="login-section">
+    <h2>Вход</h2>
+    <input id="login-login" placeholder="Логин">
+    <input id="login-password" type="password" placeholder="Пароль">
+    <button onclick="loginUser()">Войти</button>
+</div>
+
+<div class="profile-card" id="register-section">
+    <h2>Регистрация</h2>
+    <input id="reg-login" placeholder="Логин">
+    <input id="reg-password" type="password" placeholder="Пароль">
+    <button onclick="registerUser()">Зарегистрироваться</button>
+</div>
+
+<script>
+function showProfile() {
+    const user = JSON.parse(localStorage.getItem('user') || 'null');
+    const profile = document.getElementById('profile-section');
+    const login = document.getElementById('login-section');
+    const register = document.getElementById('register-section');
+    if(user) {
+        profile.style.display='block';
+        login.style.display='none';
+        register.style.display='none';
+        document.getElementById('profile-name').innerText = user.login;
+        document.getElementById('profile-balance').innerText = user.balance;
+    } else {
+        profile.style.display='none';
+        login.style.display='block';
+        register.style.display='block';
+    }
+}
+
+function registerUser() {
+    const login = document.getElementById('reg-login').value.trim();
+    const password = document.getElementById('reg-password').value.trim();
+    if(!login || !password) return alert('Заполните все поля!');
+    const user = {login, password, balance:1000};
+    localStorage.setItem('user', JSON.stringify(user));
+    alert('Регистрация успешна!');
+    showProfile();
+}
+
+function loginUser() {
+    const login = document.getElementById('login-login').value.trim();
+    const password = document.getElementById('login-password').value.trim();
+    const user = JSON.parse(localStorage.getItem('user') || 'null');
+    if(!user) return alert('Сначала зарегистрируйтесь!');
+    if(user.login===login && user.password===password) { alert('Вход успешен!'); showProfile(); }
+    else alert('Неверный логин или пароль!');
+}
+
+function logoutUser() {
+    localStorage.removeItem('user');
+    showProfile();
+}
+
+function addBalance() {
+    const amount = parseInt(prompt('Введите сумму для пополнения:'));
+    if(isNaN(amount) || amount<=0) return alert('Некорректная сумма!');
+    const user = JSON.parse(localStorage.getItem('user'));
+    user.balance += amount;
+    localStorage.setItem('user', JSON.stringify(user));
+    showProfile();
+    alert(`Баланс пополнен на ${amount} грн`);
+}
+</script>
+</body>
+</html>

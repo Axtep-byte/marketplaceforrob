@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Оформление заказа</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<button class="theme-toggle" onclick="toggleTheme()">🌙 / ☀️</button>
+
+<header class="nav">
+    <div class="logo">
+        <img src="profile-icon.png" alt="Профиль" id="profile-icon" style="width:30px; cursor:pointer;">
+        MARKET
+    </div>
+    <nav>
+        <a href="index.html">Главная</a>
+        <a href="catalog.html">Каталог</a>
+        <a href="cart.html">Корзина</a>
+    </nav>
+</header>
+
+<h1 class="page-title">Оформление заказа</h1>
+
+<form class="checkout-form fade-in">
+    <label>Имя</label>
+    <input type="text" required>
+
+    <label>Телефон</label>
+    <input type="tel" required>
+
+    <label>Адрес доставки</label>
+    <input type="text" required>
+
+    <button type="submit" class="btn">Подтвердить заказ</button>
+</form>
+
+<script src="script.js"></script>
+<script>
+applyTheme();
+document.querySelector(".checkout-form").onsubmit = e => {
+    e.preventDefault();
+    let cart = JSON.parse(localStorage.getItem("cart") || "{}");
+    let total = 0;
+    let products = JSON.parse(localStorage.getItem("products") || "[]");
+
+    Object.keys(cart).forEach(id => {
+        const p = products.find(x => x.id == id);
+        total += p.price * cart[id];
+    });
+
+    let balance = parseInt(localStorage.getItem("balance") || 1000);
+
+    if (balance < total) {
+        alert("Недостаточно средств для покупки!");
+        return;
+    }
+
+    balance -= total;
+    localStorage.setItem("balance", balance);
+    localStorage.removeItem("cart");
+
+    alert("Ваш заказ оформлен! Баланс: " + balance + " грн");
+    location.href = "index.html";
+};
+</script>
+
+</body>
+</html>

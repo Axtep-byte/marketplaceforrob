@@ -7,21 +7,29 @@
 </head>
 <body>
 
+<button class="theme-toggle" onclick="toggleTheme()">🌙 / ☀️</button>
+
 <header class="nav">
-    <div class="logo">MARKET</div>
+    <div class="logo">
+        <img src="profile-icon.png" alt="Профиль" id="profile-icon" style="width:30px; cursor:pointer;">
+        MARKET
+    </div>
     <nav>
         <a href="index.html">Главная</a>
-        <a href="catalog.html">Каталог</a>
+        <a href="catalog.html" class="active">Каталог</a>
         <a href="cart.html">Корзина</a>
     </nav>
 </header>
 
-<h2 class="page-title">Каталог</h2>
+<h1 class="page-title">Каталог</h1>
 
-<section id="catalog" class="grid"></section>
+<div id="catalog" class="grid"></div>
 
 <script src="script.js"></script>
-<script>loadCatalog();</script>
+<script>
+applyTheme();
+loadCatalog();
+</script>
 
 </body>
 </html>

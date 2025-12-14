@@ -5,23 +5,54 @@
     <title>Marketplace</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body onload="applyTheme()">
 
+<button class="theme-toggle" onclick="toggleTheme()">🌙 / ☀️</button>
 
 <header class="nav">
     <div class="logo">MARKET</div>
+    <a href="profile.html">
+        <div class="profile-icon">👤</div>
+    </a>
     <nav>
-        <a href="index.html">Главная</a>
+        <a href="index.html" class="active">Главная</a>
         <a href="catalog.html">Каталог</a>
         <a href="cart.html">Корзина</a>
     </nav>
 </header>
-<button class="theme-toggle" onclick="toggleTheme()">🌙 / ☀️</button>
+
 <section class="hero">
-    <h1>Минимализм. Стиль. Качество.</h1>
-    <p>Современный магазин техники</p>
-    <a class="btn" href="catalog.html">Каталог</a>
+    <p class="fade-in delay-2">Современный магазин техники</p>
+    <a class="btn fade-in delay-3" href="catalog.html">Каталог</a>
 </section>
 
+<script src="script.js"></script>
+<script>
+    // Показывать маленький профиль при наведении (если пользователь вошел)
+    const profileIcon = document.querySelector('.profile-icon');
+    profileIcon.addEventListener('mouseenter', () => {
+        const user = JSON.parse(localStorage.getItem('user') || 'null');
+        if (!user) return;
+        let tooltip = document.getElementById('profile-tooltip');
+        if (!tooltip) {
+            tooltip = document.createElement('div');
+            tooltip.id = 'profile-tooltip';
+            tooltip.style.position = 'absolute';
+            tooltip.style.top = '60px';
+            tooltip.style.left = '20px';
+            tooltip.style.padding = '10px 15px';
+            tooltip.style.background = 'rgba(255,255,255,0.95)';
+            tooltip.style.border = '1px solid #ccc';
+            tooltip.style.borderRadius = '12px';
+            tooltip.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
+            tooltip.innerHTML = `<strong>${user.login}</strong><br>Баланс: ${user.balance} грн`;
+            document.body.appendChild(tooltip);
+        }
+    });
+    profileIcon.addEventListener('mouseleave', () => {
+        const tooltip = document.getElementById('profile-tooltip');
+        if (tooltip) tooltip.remove();
+    });
+</script>
 </body>
 </html>
